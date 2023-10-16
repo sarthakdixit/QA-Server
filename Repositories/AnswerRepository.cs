@@ -23,7 +23,7 @@ namespace qa_server.Repositories
         {
             List<Answer> answers = new List<Answer>();
             Container container = _database.GetContainer(_containerName);
-            string query = "SELECT a.id, a.owner, a.questionId, a.description, a.createdOn FROM Answeres a";
+            string query = $"SELECT a.id, a.owner, a.questionId, a.description, a.createdOn FROM Answeres a WHERE a.questionId='{questionId}' ORDER BY a.createdOn DESC";
 
             QueryDefinition queryDefinition = new QueryDefinition(query);
             FeedIterator<Answer> feedIterator = container.GetItemQueryIterator<Answer>(queryDefinition);
